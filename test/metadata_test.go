@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/metadata"
+	"github.com/hazcod/trivy-plugin-scc/pkg/metadata"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

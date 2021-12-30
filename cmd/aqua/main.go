@@ -5,10 +5,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/buildClient"
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/log"
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/scanner"
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/uploader"
+	"github.com/hazcod/trivy-plugin-scc/pkg/buildClient"
+	"github.com/hazcod/trivy-plugin-scc/pkg/log"
+	"github.com/hazcod/trivy-plugin-scc/pkg/scanner"
+	"github.com/hazcod/trivy-plugin-scc/pkg/uploader"
 	"github.com/spf13/cobra"
 )
 

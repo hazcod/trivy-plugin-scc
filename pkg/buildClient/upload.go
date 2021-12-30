@@ -3,8 +3,8 @@ package buildClient
 import (
 	"context"
 	"fmt"
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/metadata"
 	"github.com/aquasecurity/trivy/pkg/report"
+	"github.com/hazcod/trivy-plugin-scc/pkg/metadata"
 	"github.com/pkg/errors"
 	"google.golang.org/genproto/googleapis/cloud/securitycenter/v1"
 	"strings"

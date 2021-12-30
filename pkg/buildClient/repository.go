@@ -1,7 +1,7 @@
 package buildClient
 
 import (
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/metadata"
+	"github.com/hazcod/trivy-plugin-scc/pkg/metadata"
 )
 
 func (bc *SCCClient) getScmID() (string, error) {

@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/log"
+	"github.com/hazcod/trivy-plugin-scc/pkg/log"
 )
 
 // GetScmID extracts the git path from the config file

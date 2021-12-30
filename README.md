@@ -1,12 +1,12 @@
-# trivy-plugin-aqua
+# trivy-plugin-scc
 
-Trivy plugin for integration with Aqua Security SaaS platform
+Trivy plugin for integration with Google Cloud Security Command Center
 
 ## Usage
 
 Trivy's options need to be passed after `--`. Trivy receives a target directory containing IaC files
 
-Set Aqua plugin as Trivy's current default plugin by exporting an environment variable
+Set scc plugin as Trivy's current default plugin by exporting an environment variable
 
 ```
   export TRIVY_RUN_AS_PLUGIN=aqua
@@ -46,8 +46,7 @@ The only explicitly required environment variables are
 
 | Variable    | Purpose                   |
 | :---------- | :-------------------------|
-| AQUA_KEY    | Generated through CSPM UI |
-| AQUA_SECRET | Generated through CSPM UI |
+|    |  |
 
 ### Optional
 

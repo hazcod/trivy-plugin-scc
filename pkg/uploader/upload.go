@@ -1,9 +1,9 @@
 package uploader
 
 import (
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/buildClient"
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/log"
 	"github.com/aquasecurity/trivy/pkg/report"
+	"github.com/hazcod/trivy-plugin-scc/pkg/buildClient"
+	"github.com/hazcod/trivy-plugin-scc/pkg/log"
 )
 
 // Upload forwards the results to the configured client

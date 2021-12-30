@@ -4,8 +4,8 @@ import (
 	securitycenter "cloud.google.com/go/securitycenter/apiv1"
 	"context"
 	"fmt"
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/log"
 	"github.com/aquasecurity/trivy/pkg/report"
+	"github.com/hazcod/trivy-plugin-scc/pkg/log"
 )
 
 type Client interface {
