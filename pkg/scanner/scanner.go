@@ -8,14 +8,12 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"strings"
 	"time"
 
 	fanalconfig "github.com/aquasecurity/fanal/analyzer/config"
 	fanalartifact "github.com/aquasecurity/fanal/artifact"
 	"github.com/aquasecurity/fanal/artifact/local"
 	"github.com/aquasecurity/fanal/cache"
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/proto/buildsecurity"
 	"github.com/aquasecurity/trivy/pkg/commands/artifact"
 	"github.com/aquasecurity/trivy/pkg/report"
 	"github.com/aquasecurity/trivy/pkg/scanner"
@@ -38,7 +36,7 @@ func Scan(path, severities string, debug bool) (report.Results, error) {
 		return nil, errors.Wrap(err, "failed creating scan options")
 	}
 
-	err = artifact.Run(context.Background(), opt, initializeScanner, initAquaCache())
+	err = artifact.Run(context.Background(), opt, initializeScanner, initCaches())
 	if err != nil {
 		return nil, errors.Wrap(err, "failed running scan")
 	}
@@ -112,16 +110,4 @@ func createScanOptions(severities string, debug bool) (artifact.Option, error) {
 	}
 
 	return opt, nil
-}
-
-func MatchResultSeverity(severity string) buildsecurity.SeverityEnum {
-	severity = fmt.Sprintf("SEVERITY_%s", severity)
-	index := buildsecurity.SeverityEnum_value[severity]
-	return buildsecurity.SeverityEnum(index)
-}
-
-func MatchResultType(resultType string) buildsecurity.Result_TypeEnum {
-	resultType = strings.ToUpper(fmt.Sprintf("TYPE_%s", resultType))
-	index := buildsecurity.Result_TypeEnum_value[resultType]
-	return buildsecurity.Result_TypeEnum(index)
 }

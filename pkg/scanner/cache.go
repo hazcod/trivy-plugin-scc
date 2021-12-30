@@ -42,7 +42,7 @@ func (c AquaCache) Clear() (err error) {
 	panic("not supposed to be called")
 }
 
-func initAquaCache() artifact.InitCache {
+func initCaches() artifact.InitCache {
 	return func(c artifact.Option) (cache.Cache, error) {
 		cacheClient, err := cache.NewFSCache(utils.CacheDir())
 		if err != nil {

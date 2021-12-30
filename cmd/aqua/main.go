@@ -3,15 +3,10 @@ package main
 import (
 	"fmt"
 	"os"
-	"sort"
-
 	"strings"
-
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/proto/buildsecurity"
 
 	"github.com/aquasecurity/trivy-plugin-aqua/pkg/buildClient"
 	"github.com/aquasecurity/trivy-plugin-aqua/pkg/log"
-	"github.com/aquasecurity/trivy-plugin-aqua/pkg/processor"
 	"github.com/aquasecurity/trivy-plugin-aqua/pkg/scanner"
 	"github.com/aquasecurity/trivy-plugin-aqua/pkg/uploader"
 	"github.com/spf13/cobra"
@@ -36,7 +31,7 @@ func main() {
 }
 
 var rootCmd = &cobra.Command{
-	Use:          "aqua <scanPath>",
+	Use:          "scc <scanPath>",
 	Short:        "Scan a filesystem location for vulnerabilities and config misconfiguration",
 	Hidden:       true,
 	SilenceUsage: true,
@@ -66,16 +61,12 @@ var rootCmd = &cobra.Command{
 			return err
 		}
 
-		processedResults := processor.ProcessResults(client, results)
-		if err != nil {
+		if err := uploader.Upload(client, results, tags); err != nil {
 			return err
 		}
 
-		if err := uploader.Upload(client, processedResults, tags); err != nil {
-			return err
-		}
-
-		return checkPolicyResults(processedResults)
+		return nil
+		//return checkPolicyResults(results)
 	},
 	Args: cobra.ExactArgs(1),
 }
@@ -92,60 +83,4 @@ func verifySeverities() error {
 		}
 	}
 	return nil
-}
-
-func checkPolicyResults(results []*buildsecurity.Result) error {
-	uniqCount := 0
-
-	var warns []string
-	var failures []string
-
-	for _, result := range results {
-		for _, policyResult := range result.PolicyResults {
-			if !policyResult.Failed {
-				continue
-			}
-
-			if policyResult.Enforced {
-				for _, reason := range strings.Split(policyResult.Reason, "\n") {
-					if reason == "" {
-						continue
-					}
-					uniqCount += 1
-					failures = append(failures, reason)
-				}
-			} else {
-				for _, reason := range strings.Split(policyResult.Reason, "\n") {
-					if reason == "" {
-						continue
-					}
-					warns = append(warns, reason)
-				}
-			}
-		}
-	}
-
-	if len(warns) > 0 {
-		sort.Strings(warns)
-		_, _ = fmt.Fprintf(os.Stderr, "\n\x1b[33mAqua Assurance Policy warnings were triggered by the following checks failing:\n\n\x1b[0m")
-		for _, warn := range warns {
-			_, _ = fmt.Fprintf(os.Stderr, "\t- %s\n", warn)
-		}
-		_, _ = fmt.Fprintf(os.Stderr, "\n")
-	}
-
-	if len(failures) > 0 {
-		sort.Strings(failures)
-		_, _ = fmt.Fprintf(os.Stderr, "\n\x1b[31mAqua Assurance Policy build failed with the following checks failing:\n\n\x1b[0m")
-		for _, failure := range failures {
-			_, _ = fmt.Fprintf(os.Stderr, "\t- %s\n", failure)
-		}
-		_, _ = fmt.Fprintf(os.Stderr, "\n")
-	}
-
-	if uniqCount == 0 {
-		return nil
-	}
-
-	return fmt.Errorf("\x1b[31m%d enforced policy control failure(s).\n\n\x1b[0m", len(failures))
 }

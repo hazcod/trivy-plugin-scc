@@ -28,4 +28,4 @@ git add plugin.yaml
 git commit -m "Updating plugin to latest tag ${TAG}" || true
 git push --set-upstream origin $BRANCH_NAME || true
 
-xdg-open "https://github.com/aquasecurity/trivy-plugin-aqua/compare/${BRANCH_NAME}"
+xdg-open "https://github.com/aquasecurity/trivy-plugin-scc/compare/${BRANCH_NAME}"

@@ -1,31 +1,36 @@
-name: "aqua"
-repository: github.com/aquasecurity/trivy-plugin-aqua
-version: "PLACEHOLDERVERSION"
-usage: trivy aqua <srcPath>
-description: A Trivy plugin that sends results to Aqua.
+name: "scc"
+repository: github.com/hazcod/trivy-plugin-scc
+version: "v0.0.1"
+usage: trivy scc <srcPath>
+description: A Trivy plugin that sends results to Google Cloud Security Command Center.
 platforms:
-  - selector: # optional
-      os: linux
-      arch: amd64
-    uri: https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/PLACEHOLDERVERSION/linux_amd64_PLACEHOLDERVERSION.tar.gz
-    bin: ./aqua
-  - selector:
-      os: linux
-      arch: arm64
-    uri: https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/PLACEHOLDERVERSION/linux_arm64_PLACEHOLDERVERSION.tar.gz
-    bin: ./aqua
-  - selector:
-      os: darwin
-      arch: arm64
-    uri: https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/PLACEHOLDERVERSION/darwin_amd64_PLACEHOLDERVERSION.tar.gz
-    bin: ./aqua
-  - selector:
-      os: darwin
-      arch: arm64
-    uri: https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/PLACEHOLDERVERSION/darwin_arm64_PLACEHOLDERVERSION.tar.gz
-    bin: ./aqua
-  - selector:
-      os: windows
-      arch: amd64
-    uri: https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/PLACEHOLDERVERSION/windows_amd64_PLACEHOLDERVERSION.zip
-    bin: aqua.exe
+-
+  selector:
+    os: linux
+    arch: amd64
+  uri: https://github.com/aquasecurity/trivy-plugin-scc/releases/download/PLACEHOLDERVERSION/linux_amd64_PLACEHOLDERVERSION.tar.gz
+  bin: ./aqua
+-
+  selector:
+    os: linux
+    arch: arm64
+  uri: https://github.com/aquasecurity/trivy-plugin-scc/releases/download/PLACEHOLDERVERSION/linux_arm64_PLACEHOLDERVERSION.tar.gz
+  bin: ./aqua
+-
+  selector:
+    os: darwin
+    arch: arm64
+  uri: https://github.com/aquasecurity/trivy-plugin-scc/releases/download/PLACEHOLDERVERSION/darwin_amd64_PLACEHOLDERVERSION.tar.gz
+  bin: ./aqua
+-
+  selector:
+    os: darwin
+    arch: arm64
+  uri: https://github.com/aquasecurity/trivy-plugin-scc/releases/download/PLACEHOLDERVERSION/darwin_arm64_PLACEHOLDERVERSION.tar.gz
+  bin: ./aqua
+-
+  selector:
+    os: windows
+    arch: amd64
+  uri: https://github.com/aquasecurity/trivy-plugin-scc/releases/download/PLACEHOLDERVERSION/windows_amd64_PLACEHOLDERVERSION.zip
+  bin: aqua.exe
